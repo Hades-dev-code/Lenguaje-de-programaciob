@@ -1,1 +1,1 @@
-https://github.com/Hades-dev-code/App/issues/2
+https://colab.research.google.com/drive/1x8kRwhD1PdZakh3feXGTtXbdoO9XxALz#scrollTo=-jVMRvdLZiZq
