@@ -1,4 +1,4 @@
-⌨️Planteamiento del problema:⌨️
+⌨️ PLANTEAMIENTO DEL PROBLEMA:⌨️
 
 Con el fin de ahorrar dinero las personas compran sus productos a un precio bajo o accesible conforme a su economía, entonces con el algoritmo "burbuja" presentado en este código el usuario puede presenciar de manera ordenada que es lo más barato y que es lo más caro en los productos que se encuentran en esta tienda.
 
