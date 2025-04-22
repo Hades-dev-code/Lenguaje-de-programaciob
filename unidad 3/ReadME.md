@@ -1,34 +1,34 @@
-# Roadmap de contenido
+# 📌Roadmap de contenido📌
 
-### Fase 1 Introducción a los archivos:
+### 📍Fase 1 Introducción a los archivos📍:
 	-Tipos de archivos
 	-Archivos de texto
 	-Archivos Binarios
 	-Archivos CSV
 	-Archivos JSON
-### Fase 2 Operaciones báscicas con Archivos:
+### 📍Fase 2 Operaciones báscicas con Archivos📍:
 	-Apertura y cierre de archivos
 	-Uso de open() y close()
 	-Lectura de archivos
 	-Métodos read(),readline(), y readlines()
 	-Escritura de archivos
 	-Modos de apertura: w,a,r+
-### Fase 3 Manejo de errores y comprobaciones:
+### 📍Fase 3 Manejo de errores y comprobaciones📍:
 	-Manejo de excepciones
 	-Uso de try y except
 	-Comprobación e la existecia de archivos
 	-Uso de os.path.exists()
-### Fase 4 Mejoras practicas:
+### 📍Fase 4 Mejoras practicas📍:
 	-Cierre automatico de archivos usando with
 	-Uso de la declaracio with para manejar archivos
 	-Organizacion y estructura de archivos en proyectos
 	-Mejoras practicas para la oraganización de archivos
-### Fase 5 Trabajando con formato comunes:
+### 📍Fase 5 Trabajando con formato comunes📍:
 	-Lectura y escritura usando la biblioteca CSV
 	-Métodos csv.reader() y csv.writer()
 	-Ejemplo práctico con archivos CSV
 	-Lectura y escritura de datos tabulares
-## Fase 6 Introducción a JSON:
+## 📍Fase 6 Introducción a JSON📍:
 	-Introducción a la biblioteca JSON
 	-Serialización y deserialización de datos
 	-Ejemplo de carga y guardado de datos en formato JSON	
@@ -185,14 +185,14 @@ Esta biblioteca facilita la manejo de archivos csv, permitiendo manipular datos 
 python 
 import csv
 
-## Escribir en un archivo CSV
+## 🖌️Escribir en un archivo CSV🖌️
 with open('datos.csv', 'w', newline='') as archivo_csv:
 	escritor = csv.writer(archivo_csv)
 	escritor.writerow(['Nombre', 'Edad', 'Ciudad'])
 	escritor.writerow(['Alice', 30, 'Madrid'])
 	escritor.writerow(['Bob', 25, 'Barcelona'])
 
-## Leer desde un archivo CSV
+## 📄Leer desde un archivo CSV📄
 with open('datos.csv', 'r') as archivo_csv:
 	lector = csv.reader(archivo_csv)
 	for fila in lector:
