@@ -28,13 +28,13 @@
 	-Métodos csv.reader() y csv.writer()
 	-Ejemplo práctico con archivos CSV
 	-Lectura y escritura de datos tabulares
-##Fase 6 Introducción a JSON:
+## Fase 6 Introducción a JSON:
 	-Introducción a la biblioteca JSON
 	-Serialización y deserialización de datos
 	-Ejemplo de carga y guardado de datos en formato JSON	
 	-Manipulación de datos en formato JSON
 
-# Manejo de Archivos
+# 🖨️Manejo de Archivos🖨️
 
 Son una forma de poder controlar y gestionar los archivos para su posible uso practico durante la ejecución de un programa. En programación generalmente esto se usa para hacer un respaldo de registros almacenados en la memoria o en un servidor externo. Existen varios tipos de archivos segun su contenido y formato para elegir el metodo adecuado para manipularlos, pero vamos a desacar solo algunos:
 
@@ -46,21 +46,20 @@ Son una forma de poder controlar y gestionar los archivos para su posible uso pr
 
 	-Archivos JSON: Si bien también es una extensión que contiene texto legible, los archivos "JavaScript Object Notations" o JSON suelen ser el resultado que devuelven la mayoria de las aplicaciones webs y APIs al usuario luego de ordenar el registro. Esto lo hace no solo legible para las personas sino tambien para las maquinas, Se utiliza mayormente para tranasmitir datos estrucrados. JSON permite resprentar objetos y arreglos, lo que lo hace muy versatil.
 
-## Apertura y Cierre de archivos (Metodos open y close)
+## 💼Apertura y Cierre de archivos (Metodos open y close)💼
 
 Para poder trabajar con un archivo dentro de un programa o aplicación este primero debe abrir el archivo en cuestión, puede ser directamente desde el script o bien puede solicitar al usuario que archivo abrir si es necesario, el programa accedera a la ruta del archivo para poder manipularlo, ya sea para crear, modificar o eliminar su contenido. Con la función "open()" podemos hacer esta tarea.
 
 Sin embargo, una vez el progrma finalice su tarea es ncesario, darle la instrución para cerrar dicho archivo que hemos abierto, si no hacemos esto, el archivo seguirá abierto, ocupando de manera inadvertida la memoria del usuario, incluso si el progrma ya se ha cerrado. El metodo ".close" nos puede ayudar en esto.
 
-python.
-
+python
 #Aquí abro el archivo 
 archivo = open("mi_archivo.txt")
 #Aquí cierro el archivo para ahorrar memoria
 archivo.close()
 
 
-## Lectura de archivos
+## 📚Lectura de archivos📚
 
 En python, existen mucho métodos para leer los archivos, a contiación se explican algunos de ellos con sus caracteristicas, para el uso que se necesite.   
 
@@ -88,7 +87,7 @@ print(lineas)
 archivo.close()
 
 
-## Escritura de archivos
+## ✏️Escritura de archivos✏️
 
 De la misma forma python ofrece un manejo en la escritura de archivos con distintos métodos que determinaran como se va a comportar el archivo al ser abierto. Los metodos son:
 
@@ -98,7 +97,7 @@ De la misma forma python ofrece un manejo en la escritura de archivos con distin
 
 	-Leer y escribir ('r+'):Permite leer y escribir en el mismo archivo. Sin embargo, para este método el archivo debe existir. 
 
-python. 
+python
 #Aquí voy a sobreescribir un archivo con 'w'
 archivo = open("mi_archivo.txt", "w")
 archivo.write("Que rica agua!\n")
@@ -120,13 +119,13 @@ print ("Archivo modificado correctamente!"
 archivo.close()
  
 
-## Uso de excepciones y manejo de errores (Implementación de try y except)
+## 🛠️Uso de excepciones y manejo de errores (Implementación de try y except)🛠️
 
 En Python, tenemos un manejo de errores bastante intuitivo, con el uso de try y except podemos controlar los errores que puedan suceder durante la ejecución del programa, en lugar de que este explote o finalice sin ningún tipo de explicación aparente para el usuario, el desarrollador esta en la obligación de manejar estos errores y así el usuario no se tope con dichos errores.
 
 En el caso de archivos, los errores que pueden suceder es que, por ejemplo, el usuario ingrese un archivo que no existe en la ruta que especificó, o bien el programa  no puede acceder al archivo por los permisos que el archivo posee.
 
-pyton
+python 
 try:
 	archivo = open("mi_archivo.txt")
 	conten=archivo.read()
@@ -136,11 +135,11 @@ except FileNotFoundError:
 except exception as e:
 	print(f"Haocurrido un error inesperado {e}")
 
-##Comprobar si un archivo existe
+## 🗞️Comprobar si un archivo existe🗞️
 
 Constituye en una buena practica comprobar la existencia de un archivo antes de abrirlo, a continuación veremos como manejar este caso
 
-pytohn
+python 
 import os
 
 if os.path.exists("mi_archivo.txt"):
@@ -152,7 +151,7 @@ else:
 	print("El archivo no existe")
 
 
-##Cierre automatico de Archivos (with)
+## 📝Cierre automatico de Archivos (with)📝
 Como ya se explico en varias ocasiones, el cierre de archivos es importante para ahorrar los recursos de la maquina. Sin embargo si se está enfrentando a un codigo muy extento, esta practica de ir cerrando los archivos manualmente puede hacerse una tarea tediosa para el desarrollador. Por eso existe el with, este abrira un archivo y ejecutara un bloque de código y al finalizar el bloque automaticamente cerrará el archivo aún si ocurre un error.
 
 python
@@ -161,7 +160,7 @@ with open("mi_archivo.txt") as archivo:
 	print(conten)
 #Aquí el programa cerrará el archivo, automaticamente, pues ya ha recorrido todo el bloque.
 
-##Organización y estructura de archivos en proyectos
+## 🗃️Organización y estructura de archivos en proyectos🗃️
 
 Una buena organización de archivoses crucial para mantener la claridad y eficiencia en proyectos de programación. Ejemplo:
 
@@ -179,21 +178,21 @@ mi_proyecto/
 
 
 
-##Manejo de archivos con la biblioteca CSV
+## ✒️Manejo de archivos con la biblioteca CSV✒️
 
 Esta biblioteca facilita la manejo de archivos csv, permitiendo manipular datos tabulares de manera eficiente. Por ejemplo:
 
-pyton
+python 
 import csv
 
-# Escribir en un archivo CSV
+## Escribir en un archivo CSV
 with open('datos.csv', 'w', newline='') as archivo_csv:
 	escritor = csv.writer(archivo_csv)
 	escritor.writerow(['Nombre', 'Edad', 'Ciudad'])
 	escritor.writerow(['Alice', 30, 'Madrid'])
 	escritor.writerow(['Bob', 25, 'Barcelona'])
 
-# Leer desde un archivo CSV
+## Leer desde un archivo CSV
 with open('datos.csv', 'r') as archivo_csv:
 	lector = csv.reader(archivo_csv)
 	for fila in lector:
@@ -201,7 +200,7 @@ with open('datos.csv', 'r') as archivo_csv:
 
  -Ejemplo, Cargar un archivo CSV y calcular un promedio en las edades.
 
-# Leer un archivo CSV y calcular la edad promedio
+## 📖Leer un archivo CSV y calcular la edad promedio📖
 import csv
 
 total_edad = 0
@@ -217,14 +216,14 @@ with open('datos.csv', 'r') as archivo_csv:
 edad_promedio = total_edad / contador
 print(f"La edad promedio es: {edad_promedio}")
 
-##Introducción a la librería y uso de archivos JSON
+## 📒Introducción a la librería y uso de archivos JSON📒
 
 Como ya se menciono, los archivos JSON son archivos de tip texto, ligeros y faciles de leer para las personas y fácil de analizar y generar las maquinas. Se basa en un conjunto de la notacion de objetos en JavaScript, pero es independiente del lenguaje, lo que significa que puede ser usado en varios lenguajes de programación. Por ejemplo, Python. 
 
 python
 import json
 
-# Serializar un diccionario a JSON
+#Serializar un diccionario a JSON
 datos = {
     "nombre": "Alice",
     "edad": 30,
@@ -234,7 +233,7 @@ datos = {
 with open('datos.json', 'w') as archivo_json:
 	json.dump(datos, archivo_json)
 
-# Deserializar un archivo JSON
+ #Deserializar un archivo JSON
 with open('datos.json', 'r') as archivo_json:
 	datos_cargados = json.load(archivo_json)
 	print(datos_cargados)
@@ -249,7 +248,7 @@ usuarios = [
 with open('usuarios.json', 'w') as archivo_json:
 	json.dump(usuarios, archivo_json)
 
-# Cargar los usuarios desde el archivo JSON
+# 📇Cargar los usuarios desde el archivo JSON📇
 with open('usuarios.json', 'r') as archivo_json:
 	usuarios_cargados = json.load(archivo_json)
 	for usuario in usuarios_cargados:
