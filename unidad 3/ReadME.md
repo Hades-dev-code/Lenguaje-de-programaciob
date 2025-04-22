@@ -205,9 +205,8 @@ with open('datos.csv', 'r') as archivo_csv:
 
 ### Ejemplo, Cargar un archivo CSV y calcular un promedio en las edades.
 
-## 📖Leer un archivo CSV y calcular la edad promedio📖
-
-```
+```python 
+##Leer un archivo CSV y calcular la edad promedio
 import csv
 
 total_edad = 0
