@@ -165,16 +165,17 @@ with open("mi_archivo.txt") as archivo:
 Una buena organización de archivoses crucial para mantener la claridad y eficiencia en proyectos de programación. Ejemplo:
 
 mi_proyecto/
-?
-??? datos/
-?   ??? usuarios.json
-?   ??? datos.csv
-?
-??? scripts/
-?   ??? leer_datos.py
-?   ??? escribir_datos.py
-?
-??? README.md
+│
+├── datos/
+│   ├── usuarios.json
+│   └── datos.csv
+│
+├── scripts/
+│   ├── leer_datos.py
+│   └── escribir_datos.py
+│
+└── README.md
+
 
 
 
