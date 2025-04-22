@@ -176,9 +176,6 @@ mi_proyecto/
 │
 └── README.md
 
-
-
-
 ## ✒️Manejo de archivos con la biblioteca CSV✒️
 
 Esta biblioteca facilita la manejo de archivos csv, permitiendo manipular datos tabulares de manera eficiente. Por ejemplo:
