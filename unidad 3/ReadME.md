@@ -203,7 +203,7 @@ with open('datos.csv', 'r') as archivo_csv:
 		print(fila)
 ```
 
-    -Ejemplo, Cargar un archivo CSV y calcular un promedio en las edades.
+### Ejemplo, Cargar un archivo CSV y calcular un promedio en las edades.
 
 ## 📖Leer un archivo CSV y calcular la edad promedio📖
 
@@ -246,7 +246,7 @@ with open('datos.json', 'r') as archivo_json:
 	datos_cargados = json.load(archivo_json)
 	print(datos_cargados)
 ```
-   -Ejemplo, guardar una lista de usuarios en un archivo JSON
+### Ejemplo, guardar una lista de usuarios en un archivo JSON
 ```python
 import json
 usuarios = [
@@ -263,4 +263,5 @@ with open('usuarios.json', 'w') as archivo_json:
 with open('usuarios.json', 'r') as archivo_json:
 	usuarios_cargados = json.load(archivo_json)
 	for usuario in usuarios_cargados:
-		print(f"{usuario['nombre']} tiene {usuario['edad']} años.")```
+		print(f"{usuario['nombre']} tiene {usuario['edad']} años.")
+```
