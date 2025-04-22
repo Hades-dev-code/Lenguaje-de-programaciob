@@ -258,7 +258,7 @@ with open('usuarios.json', 'w') as archivo_json:
 
 # 📇Cargar los usuarios desde el archivo JSON📇
 
-```pyton
+```python
 with open('usuarios.json', 'r') as archivo_json:
 	usuarios_cargados = json.load(archivo_json)
 	for usuario in usuarios_cargados:
