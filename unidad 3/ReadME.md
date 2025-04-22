@@ -182,12 +182,11 @@ mi_proyecto/
 ```
 ## ✒️Manejo de archivos con la biblioteca CSV✒️
 
-Esta biblioteca facilita la manejo de archivos csv, permitiendo manipular datos tabulares de manera eficiente. Por ejemplo:
-
-```python 
-import csv
+Esta biblioteca facilita la manejo de archivos csv, permitiendo manipular datos tabulares de manera eficiente. 
 
 ## 🖌️Escribir en un archivo CSV🖌️
+
+```python 
 with open('datos.csv', 'w', newline='') as archivo_csv:
 	escritor = csv.writer(archivo_csv)
 	escritor.writerow(['Nombre', 'Edad', 'Ciudad'])
@@ -197,7 +196,7 @@ with open('datos.csv', 'w', newline='') as archivo_csv:
 
 ## 📄Leer desde un archivo CSV📄
 
-```
+```python
 with open('datos.csv', 'r') as archivo_csv:
 	lector = csv.reader(archivo_csv)
 	for fila in lector:
@@ -247,7 +246,7 @@ with open('datos.json', 'r') as archivo_json:
 	datos_cargados = json.load(archivo_json)
 	print(datos_cargados)
 ```
-	-Ejemplo, guardar una lista de usuarios en un archivo JSON
+   -Ejemplo, guardar una lista de usuarios en un archivo JSON
 ```python
 import json
 usuarios = [
