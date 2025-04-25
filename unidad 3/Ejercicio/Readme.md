@@ -53,4 +53,4 @@ Añadir funcionalidades extra para editar y guardar otros tipos de archivos.
 
 Mejorar el manejo de errores y la retroalimentación al usuario para evitar fallos y disgusto de los usuarios a la hora de usar el codigo.
 
-Implementar una interfaz de usuario más robusta y atractiva (urgente!!!, pero por ahora la aue tiene es la que logree hacer 🥺).
+Implementar una interfaz de usuario más robusta y atractiva (urgente!!!, pero por ahora la que tiene es la que logree hacer 🥺).
