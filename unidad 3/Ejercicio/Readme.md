@@ -2,7 +2,7 @@
 
  Este proyecto es una app que utiliza flask para permitir que los usuarios puedan cargar diversos tipos de archivos (texto, PDF, imágenes y audio), procesarlos de diferentes maneras y visualizar información sobre ellos.
 
- # 📍 Planteamiento del problema 📍
+ # 📍Planteamiento del problema📍
  La idea principal de esta app es proporcionar una interfaz web sencilla para interactuar con archivos locales.
 
  La misma permite:
