@@ -40,3 +40,17 @@
 **Organización de archivos:** Utiliza carpetas específicas (`uploads` y `static/audio`) para organizar los archivos subidos en el servidor.
 
 **Cierre seguro de archivos:** Emplea la declaración `with open(...)` para asegurar que los archivos se cierren correctamente después de su manipulación.
+
+# 💡Para mejorar💡
+
+Este codigo puede tener una amplia gama de mejoria pero por ahora estos son los detalles que se me ocurren por ahora:
+
+Podria implementarse la lectura y escritura de archivos CSV utilizando la biblioteca `csv`.
+
+Tambien podria implementarse la lectura y escritura de archivos JSON utilizando la biblioteca `json`.
+
+Añadir funcionalidades extra para editar y guardar otros tipos de archivos.
+
+Mejorar el manejo de errores y la retroalimentación al usuario para evitar fallos y disgusto de los usuarios a la hora de usar el codigo.
+
+Implementar una interfaz de usuario más robusta y atractiva (urgente!!!, pero por ahora la aue tiene es la que logree hacer 🥺).
