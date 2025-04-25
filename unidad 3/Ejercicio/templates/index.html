@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Subir y Editar Archivos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap">
+</head>
+<body>
+    <div class="container">
+        <h1>Subir y Editar Archivos</h1>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data" action="/result">
+            <p>Selecciona uno o varios archivos del mismo tipo para trabajar:</p>
+            <input type="file" id="file-upload" name="files" multiple required>
+
+            <div id="file-info">
+                </div>
+
+            <p>¿Quieres escuchar música mientras trabajas? (Opcional)</p>
+            <input type="file" id="audio-upload" name="audio">
+            <div id="audio-player">
+                </div>
+
+            <input type="submit" value="Subir y Editar">
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
