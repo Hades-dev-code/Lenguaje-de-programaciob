@@ -25,4 +25,18 @@
  
  **Validación de tipos de archivo:** Asegura que solo se procesen los archivos con las extensiones permitidas.
  
- 
+**Lectura y visualización de archivos de texto:** Permite ver el contenido plano de los archivos `.txt` directamente en la página de resultados.
+
+**Extracción de texto desde PDF:** Utiliza la biblioteca `pdfminer.high_level` para extraer el texto de los archivos `.pdf` y lo muestra al usuario.
+
+**Previsualización de imágenes:** Muestra las imágenes subidas directamente en la página de resultados utilizando la codificación base64.
+
+**Carga y almacenamiento de archivos de audio:** Permite subir archivos de audio y los guarda en una carpeta específica en el servidor.
+
+**Guardado de archivos de texto editados:** Ofrece la funcionalidad de enviar contenido de texto desde el navegador al servidor para guardarlo en un nuevo archivo.
+
+**Manejo de errores:** Incluye un manejo básico de errores, por ejemplo, al intentar leer archivos PDF.
+
+**Organización de archivos:** Utiliza carpetas específicas (`uploads` y `static/audio`) para organizar los archivos subidos en el servidor.
+
+**Cierre seguro de archivos:** Emplea la declaración `with open(...)` para asegurar que los archivos se cierren correctamente después de su manipulación.
