@@ -1,31 +1,32 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Subir y Editar Archivos</title>
+    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Subir y Editar Archivos</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap">
 </head>
 <body>
     <div class="container">
         <h1>Subir y Editar Archivos</h1>
+
         {% if error %}
         <p class="error">{{ error }}</p>
         {% endif %}
-        <form method="POST" enctype="multipart/form-data" action="/result">
-            <p>Selecciona uno o varios archivos del mismo tipo para trabajar:</p>
-            <input type="file" id="file-upload" name="files" multiple required>
 
+        <form method="POST" enctype="multipart/form-data" action="/result" id="upload-form">
+
+            <div id="drop-zone">
+                <p>Arrastra archivos aquí o haz clic para seleccionar</p>
+                <input type="file" id="file-upload" name="files" multiple required>
+            </div>
             <div id="file-info">
-                </div>
+                 <p>No se ha seleccionado ningún archivo.</p> </div>
 
-            <p>¿Quieres escuchar música mientras trabajas? (Opcional)</p>
-            <input type="file" id="audio-upload" name="audio">
-            <div id="audio-player">
+            <hr style="border: none; border-top: 1px solid #eee; margin: 25px 0;"> <p>¿Quieres escuchar música mientras trabajas? (Opcional)</p>
+            <input type="file" id="audio-upload" name="audio" accept="audio/*"> <div id="audio-player">
                 </div>
+             <hr style="border: none; border-top: 1px solid #eee; margin: 25px 0;"> <input type="submit" value="Subir y Editar">
 
-            <input type="submit" value="Subir y Editar">
-        </form>
-    </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        </form> </div> <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

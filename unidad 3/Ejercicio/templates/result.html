@@ -10,33 +10,43 @@
         <h1>Editar Archivo</h1>
         {% if files %}
             {% for file_data in files %}
-                <h2>Archivo: {{ file_data.filename }}</h2>
-                <p><strong>Nombre:</strong> {{ file_data.filename }}</p>
-                <p><strong>Peso:</strong> {{ file_data.file_size|format_bytes }}</p>
-                <p><strong>Tipo de archivo:</strong> {{ file_data.file_type }}</p>
-
-                <div id="file-content-{{ loop.index }}">
-                    {% if file_data.file_type.startswith('text/') %}
-                        <textarea id="text-editor-{{ loop.index }}">{{ file_data.file_content }}</textarea>
-                        <button class="save-button" data-index="{{ loop.index }}">Guardar Cambios</button>
-                    {% elif file_data.file_type == 'application/pdf' %}
-                        <textarea id="text-editor-{{ loop.index }}">{{ file_data.pdf_text }}</textarea>
-                        <p>PDF convertido a texto para editar.</p>
-                        <button class="save-button" data-index="{{ loop.index }}">Guardar Cambios (como texto)</button>
-                    {% elif file_data.file_type.startswith('image/') %}
-                        <img id="image-preview-{{ loop.index }}" src="data:{{ file_data.file_type }};base64,{{ file_data.image_data }}">
-                    {% else %}
-                        <p>Tipo de archivo no soportado para edición.</p>
-                    {% endif %}
-                </div>
+                <div class="file-block">
+                    <h2>Archivo: {{ file_data.filename }}</h2>
+                    <p><strong>Nombre:</strong> {{ file_data.filename }}</p>
+                    <p><strong>Peso:</strong> <span class="file-size-{{ loop.index }}">{{ file_data.file_size|format_bytes }}</span></p>
+                    <p><strong>Tipo de archivo:</strong> {{ file_data.file_type }}</p> <div id="file-content-{{ loop.index }}">
+                        {% if file_data.file_type.startswith('text/') %}
+                            <textarea id="text-editor-{{ loop.index }}">{{ file_data.file_content }}</textarea>
+                            <button class="save-button"
+                                    data-index="{{ loop.index }}"
+                                    data-filename="{{ file_data.filename }}"
+                                    data-filetype="{{ file_data.file_type }}">Guardar Cambios</button>
+                        {% elif file_data.file_type == 'application/pdf' %}
+                            <textarea id="text-editor-{{ loop.index }}">{{ file_data.pdf_text }}</textarea>
+                            <p><em>(Texto extraído del PDF. Los cambios se guardarán como un <strong>nuevo PDF simple</strong>, sin el formato original).</em></p>
+                            <button class="save-button"
+                                    data-index="{{ loop.index }}"
+                                    data-filename="{{ file_data.filename }}"
+                                    data-filetype="{{ file_data.file_type }}">Guardar Cambios (como PDF simple)</button>
+                        {% elif file_data.file_type.startswith('image/') %}
+                            <img id="image-preview-{{ loop.index }}" src="data:{{ file_data.file_type }};base64,{{ file_data.image_data }}" alt="Vista previa de {{ file_data.filename }}">
+                            <p><em>(La edición de imágenes no está soportada).</em></p>
+                        {% else %}
+                            <p>Tipo de archivo no soportado para visualización o edición.</p>
+                        {% endif %}
+                    </div>
+                 </div>
+                 <hr>
             {% endfor %}
         {% else %}
-            <p>No se subieron archivos.</p>
+            <p>No se subieron archivos o hubo un error al procesarlos.</p>
         {% endif %}
 
         {% if audio_filename %}
             <h2>Reproductor de Audio</h2>
-            <audio controls src="{{ url_for('static', filename='audio/' + audio_filename) }}"></audio>
+            <audio controls src="{{ url_for('static', filename='audio/' + audio_filename) }}">
+                Tu navegador no soporta el elemento de audio.
+            </audio>
         {% endif %}
 
         <p><a href="/">Subir más archivos</a></p>
