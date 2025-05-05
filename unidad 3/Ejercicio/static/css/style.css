@@ -1,23 +1,264 @@
-﻿body { font-family: sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-.container { background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); text-align: center; }
-#file-info { margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 4px; background-color: #f9f9f9; text-align: left; }
-#file-content { margin-top: 20px; border: 1px solid #ddd; border-radius: 4px; }
-#text-editor {
-    width: 100%;
-    min-height: 400px;
-    padding: 15px; 
+﻿/* static/css/style.css */
+
+/* --- Estilos Generales --- */
+body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinear arriba para contenido largo */
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px; /* Espacio alrededor */
     box-sizing: border-box;
-    font-family: 'Roboto Mono', monospace; 
-    font-size: 16px; 
-    border: 1px solid #ccc; 
-    border-radius: 8px; 
-    background-color: #f9f9f9; 
-    line-height: 1.6; 
-    tab-size: 4; 
 }
-#image-preview { max-width: 100%; height: auto; margin-top: 10px; border: 1px solid #ccc; border-radius: 4px; }
-#save-button { background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; transition: background-color 0.3s ease; margin-top: 10px; }
-#save-button:hover { background-color: #1e7e34; }
-.error { color: red; margin-top: 10px; }
-#audio-player { margin-top: 20px; }
-#audio-player audio { width: 100%; }
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 80%; /* Ancho relativo */
+    max-width: 900px; /* Ancho máximo */
+    margin: 20px auto; /* Centrado y con márgenes verticales */
+}
+
+h1, h2 {
+    color: #333;
+}
+
+hr { /* Separador visual */
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 30px 0;
+}
+
+p {
+    line-height: 1.6; /* Mejorar legibilidad */
+    color: #555;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- Estilos Index (Subida) --- */
+
+/* Estilos para la zona de arrastrar y soltar */
+#drop-zone {
+    border: 3px dashed #ccc;
+    border-radius: 8px;
+    padding: 40px 20px; /* Más padding vertical */
+    text-align: center;
+    margin-bottom: 25px; /* Más espacio abajo */
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+#drop-zone p {
+    margin: 0;
+    color: #555;
+    font-size: 1.1em;
+    pointer-events: none; /* Para que el click pase al div */
+}
+
+/* Estilo visual cuando se arrastra un archivo sobre la zona */
+#drop-zone.drag-over {
+    border-color: #007bff; /* Azul brillante */
+    background-color: #e9f5ff; /* Azul muy claro */
+}
+
+/* Ocultar el input de archivo original (el div #drop-zone lo activa) */
+#drop-zone input[type="file"]#file-upload {
+    display: none;
+}
+
+/* Estilos para la sección de información de archivos seleccionados */
+#file-info {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f8f8f8; /* Ligero cambio de color */
+    text-align: left;
+    min-height: 60px; /* Asegurar altura mínima */
+    word-break: break-word; /* Evitar que nombres largos rompan el layout */
+}
+
+#file-info h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+#file-info p {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+}
+
+/* Estilos para el input de audio (opcional) */
+#audio-player {
+    margin-top: 10px; /* Reducir margen superior */
+    text-align: left;
+}
+
+#audio-player audio {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin-top: 5px;
+}
+
+/* Estilo para el botón de envío */
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+/* --- Estilos Result (Edición) --- */
+
+/* Estilo para cada bloque de archivo en result.html */
+.file-block {
+    border: 1px solid #eee;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    background-color: #fdfdfd;
+    text-align: left; /* Alinear texto a la izquierda dentro del bloque */
+}
+
+.file-block h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+/* Estilo para los textareas de edición */
+textarea[id^="text-editor-"] {
+    width: 100%; /* Ocupa todo el ancho disponible del contenedor */
+    min-height: 450px; /* Altura mínima */
+    height: auto;
+    padding: 15px;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace; /* Fuente monoespaciada */
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    line-height: 1.6;
+    tab-size: 4;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    resize: vertical; /* Permitir redimensionar verticalmente */
+}
+
+/* Estilo para la vista previa de imágenes */
+#image-preview {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px; /* Añadir margen inferior */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo para el botón de guardar cambios */
+.save-button {
+    background-color: #28a745; /* Verde */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.save-button:hover {
+    background-color: #1e7e34; /* Verde oscuro */
+}
+
+.save-button:disabled {
+    background-color: #cccccc; /* Gris cuando está deshabilitado */
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* --- Estilos Comunes --- */
+
+/* Estilo para mensajes de error */
+.error {
+    color: #dc3545; /* Rojo */
+    margin-top: 10px;
+    margin-bottom: 15px; /* Añadir espacio abajo */
+    font-weight: bold;
+    background-color: #f8d7da; /* Fondo rosa claro */
+    border: 1px solid #f5c6cb; /* Borde rojo claro */
+    padding: 10px;
+    border-radius: 4px;
+    text-align: left; /* Alinear a la izquierda */
+}
+
+
+/* --- Estilos Responsivos (Básicos) --- */
+@media (max-width: 768px) {
+    .container {
+        width: 95%; /* Más ancho en pantallas pequeñas */
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    textarea[id^="text-editor-"] {
+        min-height: 300px; /* Reducir altura en pantallas pequeñas */
+        font-size: 13px;
+    }
+
+    #drop-zone {
+        padding: 25px 15px;
+    }
+
+    input[type="submit"], .save-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+     h1 {
+        font-size: 1.5em;
+    }
+     .container {
+        padding: 15px;
+    }
+     textarea[id^="text-editor-"] {
+        min-height: 250px;
+    }
+}

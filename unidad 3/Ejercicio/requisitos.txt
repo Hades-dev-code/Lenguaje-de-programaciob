@@ -3,3 +3,4 @@ math
 base64
 werkzeug
 pdfminer.six
+fpdf
