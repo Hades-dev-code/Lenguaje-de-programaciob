@@ -1,7 +1,7 @@
 import React from 'react';
-import GithubIcon from './assets/github-icon.png'; 
-import BufferringIcon from './assets/company-icon.png'; 
-import ProfileIcon from './assets/profile-pic.png';
+import GithubIcon from '../../assets/github-icon.png'; 
+import BufferringIcon from '../../assets/company-icon.png'; 
+import ProfileIcon from '../../assets/profile-pic.png';
 
 // Componente individual para cada enlace
 const SidebarItem = ({ icon, url, name }) => (
@@ -73,5 +73,6 @@ const Sidebar = () => {
         </div>
     );
 };
+
 
 export default Sidebar;
