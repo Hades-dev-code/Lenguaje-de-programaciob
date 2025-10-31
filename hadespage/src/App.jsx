@@ -7,9 +7,9 @@ import useScrollProgress from "./hooks/useScrollProgress.js";
 function App() {
   const progress = useScrollProgress();
 
-  // Interpolamos entre negro (0,0,0) y rojo (255,0,0)
+  // Interpolación: negro (0,0,0) → rojo (255,0,0)
   const redValue = Math.floor(255 * progress);
-  const bgColor = `rgb(${redValue}, 0, 0)`; // de negro a rojo
+  const bgColor = `rgb(${redValue}, 0, 0)`;
 
   return (
     <Router>
@@ -18,11 +18,11 @@ function App() {
         style={{ backgroundColor: bgColor }}
       >
         {/* Luna */}
-        <div className="absolute top-10 right-10 w-28 h-28 rounded-full 
-                        bg-white/90 shadow-[0_0_60px_20px_rgba(255,255,255,0.6)]">
+        <div className="absolute top-0 right-0 w-24 h-24 rounded-full 
+                        bg-white/90 shadow-[0_0_80px_30px_rgba(255,255,255,0.6)] 
+                        translate-x-1/3 -translate-y-1/3">
         </div>
 
-        {/* Rutas */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contacto" element={<Contact />} />
