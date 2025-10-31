@@ -1,4 +1,3 @@
-// src/pages/Contact.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,8 +13,7 @@ function Contact() {
 
         {/* Formulario con FormSubmit */}
         <form
-          action="https://formsubmit.co/hadesdev004@gmail.com
-"
+          action="https://formsubmit.co/hadesdev004@gmail.com"
           method="POST"
           className="space-y-4"
         >
