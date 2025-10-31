@@ -1,3 +1,4 @@
+// src/pages/Contact.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,34 +17,36 @@ function Contact() {
           action="https://formsubmit.co/hadesdev004@gmail.com"
           method="POST"
           className="space-y-4"
+        >
           <input
-    type="text"
-    name="name"
-    placeholder="Tu nombre"
-    required
-    className="w-full p-3 border rounded-lg text-gray-900"
-  />
-  <input
-    type="email"
-    name="email"
-    placeholder="Tu correo"
-    required
-    className="w-full p-3 border rounded-lg text-gray-900"
-  />
-  <textarea
-    name="message"
-    placeholder="Escribe tu mensaje..."
-    required
-    className="w-full p-3 border rounded-lg h-32 text-gray-900"
-  ></textarea>
+            type="text"
+            name="name"
+            placeholder="Tu nombre"
+            required
+            className="w-full p-3 border rounded-lg text-gray-900 placeholder-gray-500"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Tu correo"
+            required
+            className="w-full p-3 border rounded-lg text-gray-900 placeholder-gray-500"
+          />
+          <textarea
+            name="message"
+            placeholder="Escribe tu mensaje..."
+            required
+            className="w-full p-3 border rounded-lg h-32 text-gray-900 placeholder-gray-500"
+          ></textarea>
 
-  <button
-    type="submit"
-    className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition"
-  >
-    Enviar
-  </button>
-</form>
+          {/* Botón de enviar */}
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition"
+          >
+            Enviar
+          </button>
+        </form>
 
         {/* Botón para regresar */}
         <button
