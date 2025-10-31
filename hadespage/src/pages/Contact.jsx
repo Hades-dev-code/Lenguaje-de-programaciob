@@ -14,7 +14,8 @@ function Contact() {
 
         {/* Formulario con FormSubmit */}
         <form
-          action="https://formsubmit.co/TU_CORREO_AQUI"
+          action="https://formsubmit.co/hadesdev004@gmail.com
+"
           method="POST"
           className="space-y-4"
         >
