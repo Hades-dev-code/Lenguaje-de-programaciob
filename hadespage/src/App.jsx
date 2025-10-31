@@ -1,17 +1,23 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-// Páginas
-import Home from "./pages/Home";
-import Contact from "./pages/Contact";
+import Home from "./pages/Home.jsx";
+import Contact from "./pages/Contact.jsx";
+import useScrollProgress from "./hooks/useScrollProgress.js";
 
 function App() {
+  const progress = useScrollProgress();
+
+  // Interpolamos entre negro (0,0,0) y rojo (255,0,0)
+  const redValue = Math.floor(255 * progress);
+  const bgColor = `rgb(${redValue}, 0, 0)`; // de negro a rojo
+
   return (
     <Router>
-      {/* Contenedor principal con fondo nocturno */}
-      <div className="min-h-screen bg-night-sky text-white relative">
-        
-        {/* Luna en la esquina superior derecha */}
+      <div
+        className="min-h-screen text-white relative transition-colors duration-300"
+        style={{ backgroundColor: bgColor }}
+      >
+        {/* Luna */}
         <div className="absolute top-10 right-10 w-28 h-28 rounded-full 
                         bg-white/90 shadow-[0_0_60px_20px_rgba(255,255,255,0.6)]">
         </div>
