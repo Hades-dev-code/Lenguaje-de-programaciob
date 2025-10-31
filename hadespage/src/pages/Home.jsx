@@ -1,10 +1,10 @@
 import React from "react";
 
 // Importamos los componentes
-import Sidebar from "../components/shared/Sidebar";
-import Hero from "../components/sections/Hero";
-import Work from "../components/sections/Work";
-import About from "../components/sections/About";
+import Sidebar from "../components/shared/Sidebar.js";
+import Hero from "../components/sections/Hero.jsx";
+import Work from "../components/shared/Work.jsx";
+import About from "../components/sections/About.jsx";
 
 function Home() {
   return (
