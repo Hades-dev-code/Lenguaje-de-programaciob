@@ -3,7 +3,6 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        // Gradiente nocturno: negro -> gris oscuro -> rojo
         "night-sky": "linear-gradient(to bottom, #000000 0%, #1a1a1a 40%, #ff0000 100%)",
       },
       colors: {
