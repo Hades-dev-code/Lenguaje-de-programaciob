@@ -7,7 +7,7 @@ import useScrollProgress from "./hooks/useScrollProgress.js";
 function App() {
   const progress = useScrollProgress();
 
-  // Interpolación: negro (0,0,0) → rojo (255,0,0)
+  // Interpolación
   const redValue = Math.floor(255 * progress);
   const bgColor = `rgb(${redValue}, 0, 0)`;
 
