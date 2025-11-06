@@ -1,7 +1,9 @@
+// src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Contact from "./pages/Contact.jsx";
+import FootballData from "./pages/Football-Data.jsx"; // 👈 Importamos la nueva página
 import useScrollProgress from "./hooks/useScrollProgress.js";
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contacto" element={<Contact />} />
+          <Route path="/football-data" element={<FootballData />} /> {/* 👈 Nueva ruta */}
         </Routes>
       </div>
     </Router>
