@@ -2,14 +2,6 @@ import React, { useState, useEffect } from "react";
 import SidebarFootball from "../components/shared/SidebarFootball";
 import { handleApiError } from "../utils/toastHandler";
 
-fetch(`${API_URL}/teams/${teamId}/matches?status=FINISHED&limit=1`, { headers })
-  .then(res => {
-    if (!res.ok) throw { response: res };
-    return res.json();
-  })
-  .then(data => setLastMatch(data.matches[0]))
-  .catch(err => handleApiError(err));
-
 function FootballData() {
   const [teamId, setTeamId] = useState(81); // FC Barcelona por defecto
   const [lastMatch, setLastMatch] = useState(null);
@@ -19,32 +11,40 @@ function FootballData() {
   const API_URL = "https://api.football-data.org/v4";
   const API_KEY = "69d53a18557d4c5e92d9bab88c53ec62";
 
-  // Cargar datos del equipo seleccionado
   useEffect(() => {
     const headers = { "X-Auth-Token": API_KEY };
 
     // Último partido terminado
     fetch(`${API_URL}/teams/${teamId}/matches?status=FINISHED&limit=1`, { headers })
-      .then(res => res.json())
-      .then(data => setLastMatch(data.matches[0]));
+      .then(res => {
+        if (!res.ok) throw { response: res };
+        return res.json();
+      })
+      .then(data => setLastMatch(data.matches[0]))
+      .catch(err => handleApiError(err));
 
     // Próximo partido
     fetch(`${API_URL}/teams/${teamId}/matches?status=SCHEDULED&limit=1`, { headers })
-      .then(res => res.json())
-      .then(data => setNextMatch(data.matches[0]));
+      .then(res => {
+        if (!res.ok) throw { response: res };
+        return res.json();
+      })
+      .then(data => setNextMatch(data.matches[0]))
+      .catch(err => handleApiError(err));
 
     // Plantilla
     fetch(`${API_URL}/teams/${teamId}`, { headers })
-      .then(res => res.json())
-      .then(data => setSquad(data.squad));
+      .then(res => {
+        if (!res.ok) throw { response: res };
+        return res.json();
+      })
+      .then(data => setSquad(data.squad))
+      .catch(err => handleApiError(err));
   }, [teamId]);
 
   return (
     <div className="flex min-h-screen bg-zinc-800 text-white">
-      {/* Sidebar */}
       <SidebarFootball setTeamId={setTeamId} />
-
-      {/* Contenido principal */}
       <main className="flex-1 p-8 space-y-10">
         {/* Último resultado */}
         <section>
