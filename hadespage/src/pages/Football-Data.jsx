@@ -8,14 +8,10 @@ function FootballData() {
   const [nextMatch, setNextMatch] = useState(null);
   const [squad, setSquad] = useState([]);
 
-  const API_URL = "https://api.football-data.org/v4";
-  const API_KEY = "69d53a18557d4c5e92d9bab88c53ec62";
-
+  // Cargar datos del equipo seleccionado desde tu backend Express
   useEffect(() => {
-    const headers = { "X-Auth-Token": API_KEY };
-
     // Último partido terminado
-    fetch(`${API_URL}/teams/${teamId}/matches?status=FINISHED&limit=1`, { headers })
+    fetch(`http://localhost:4000/api/team/${teamId}/last-match`)
       .then(res => {
         if (!res.ok) throw { response: res };
         return res.json();
@@ -24,7 +20,7 @@ function FootballData() {
       .catch(err => handleApiError(err));
 
     // Próximo partido
-    fetch(`${API_URL}/teams/${teamId}/matches?status=SCHEDULED&limit=1`, { headers })
+    fetch(`http://localhost:4000/api/team/${teamId}/next-match`)
       .then(res => {
         if (!res.ok) throw { response: res };
         return res.json();
@@ -33,18 +29,21 @@ function FootballData() {
       .catch(err => handleApiError(err));
 
     // Plantilla
-    fetch(`${API_URL}/teams/${teamId}`, { headers })
+    fetch(`http://localhost:4000/api/team/${teamId}/squad`)
       .then(res => {
         if (!res.ok) throw { response: res };
         return res.json();
       })
-      .then(data => setSquad(data.squad))
+      .then(data => setSquad(data))
       .catch(err => handleApiError(err));
   }, [teamId]);
 
   return (
     <div className="flex min-h-screen bg-zinc-800 text-white">
+      {/* Sidebar */}
       <SidebarFootball setTeamId={setTeamId} />
+
+      {/* Contenido principal */}
       <main className="flex-1 p-8 space-y-10">
         {/* Último resultado */}
         <section>
