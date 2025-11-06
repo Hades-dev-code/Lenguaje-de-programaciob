@@ -1,4 +1,3 @@
-// server.js
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
@@ -9,7 +8,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
 const API_URL = "https://api.football-data.org/v4";
-const API_KEY = process.env.FOOTBALL_API_KEY; // guarda tu key en .env
+const API_KEY = process.env.FOOTBALL_API_KEY; // guardar key en .env
 
 app.use(cors());
 
