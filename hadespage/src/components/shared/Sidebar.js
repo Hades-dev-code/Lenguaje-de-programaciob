@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaFutbol } from "react-icons/fa"; // 👈 balón de fútbol
 import GithubIcon from "../../assets/github-icon.png";
 import CompanyIcon from "../../assets/company-icon.png";
 import ProfilePic from "../../assets/profile-pic.png";
@@ -16,7 +17,7 @@ function Sidebar() {
       onMouseLeave={() => setIsExpanded(false)}
     >
       {/* Avatar */}
-      <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-indigo-500 mb-6">
+      <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-indigo-500 mb-6 cursor-pointer">
         <img
           src={ProfilePic}
           alt="Avatar"
@@ -24,7 +25,7 @@ function Sidebar() {
         />
       </div>
 
-      {/* Íconos arriba, justo después del avatar */}
+      {/* Íconos arriba */}
       <nav className="flex flex-col gap-6 mb-8">
         <a
           href="https://github.com/Hades-dev-code"
@@ -45,9 +46,18 @@ function Sidebar() {
           <img src={CompanyIcon} alt="Compañía" className="w-6 h-6" />
           {isExpanded && <span>Buffer Ring</span>}
         </a>
+
+        {/* Nuevo acceso con balón animado solo en hover */}
+        <Link
+          to="/football-data"
+          className="flex items-center gap-2 hover:text-indigo-400 transition group"
+        >
+          <FaFutbol className="w-6 h-6 text-red-500 group-hover:animate-spin-slow" /> 
+          {isExpanded && <span>BufferBall</span>}
+        </Link>
       </nav>
 
-      {/* Botón de contacto debajo de los íconos */}
+      {/* Botón de contacto */}
       <Link
         to="/contacto"
         className="mt-4 w-full text-center bg-indigo-600 hover:bg-indigo-700 
