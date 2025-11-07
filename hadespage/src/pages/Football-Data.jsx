@@ -2,16 +2,18 @@ import React, { useState, useEffect } from "react";
 import SidebarFootball from "../components/shared/SidebarFootball";
 import { handleApiError } from "../utils/toastHandler";
 
+// Usamos variable de entorno para el backend
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function FootballData() {
   const [teamId, setTeamId] = useState(81); // FC Barcelona por defecto
   const [lastMatch, setLastMatch] = useState(null);
   const [nextMatch, setNextMatch] = useState(null);
   const [squad, setSquad] = useState([]);
 
-  // Cargar datos del equipo seleccionado desde tu backend Express
   useEffect(() => {
     // Último partido terminado
-    fetch(`http://localhost:4000/api/team/${teamId}/last-match`)
+    fetch(`${BACKEND_URL}/api/team/${teamId}/last-match`)
       .then(res => {
         if (!res.ok) throw { response: res };
         return res.json();
@@ -20,7 +22,7 @@ function FootballData() {
       .catch(err => handleApiError(err));
 
     // Próximo partido
-    fetch(`http://localhost:4000/api/team/${teamId}/next-match`)
+    fetch(`${BACKEND_URL}/api/team/${teamId}/next-match`)
       .then(res => {
         if (!res.ok) throw { response: res };
         return res.json();
@@ -29,7 +31,7 @@ function FootballData() {
       .catch(err => handleApiError(err));
 
     // Plantilla
-    fetch(`http://localhost:4000/api/team/${teamId}/squad`)
+    fetch(`${BACKEND_URL}/api/team/${teamId}/squad`)
       .then(res => {
         if (!res.ok) throw { response: res };
         return res.json();
