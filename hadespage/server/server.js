@@ -12,7 +12,7 @@ const API_KEY = process.env.FOOTBALL_API_KEY;
 
 //  CORS: solo permite frontend en Vercel
 app.use(cors({
-  origin: "https://lenguaje-de-programaciob-icr72pvti-carlos-projects-00d8fb62.vercel.app"
+  origin: "*"
 }));
 
 // Último partido terminado
