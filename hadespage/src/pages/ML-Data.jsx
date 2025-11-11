@@ -1,54 +1,54 @@
 import React, { useState, useEffect } from "react";
-import SidebarHeroes from "../components/shared/SidebarHeroes";
+import PokeSidebar from "../components/shared/PokeSidebar"; 
 import { handleApiError } from "../utils/toastHandler";
 
-const API_HOST = "mobile-legends-character-api.p.rapidapi.com";
-const API_KEY = process.env.REACT_APP_RAPIDAPI_KEY;
-
-function MobileLegendsData() {
-  const [heroId, setHeroId] = useState("Julian");
-  const [heroInfo, setHeroInfo] = useState(null);
+function PokemonData() {
+  const [pokemonId, setPokemonId] = useState("pikachu");
+  const [pokemonInfo, setPokemonInfo] = useState(null);
+  const [pokemonSpecies, setPokemonSpecies] = useState(null);
 
   useEffect(() => {
-    fetch(`https://${API_HOST}/api/characters/${heroId}`, {
-      headers: {
-        "x-rapidapi-key": API_KEY,
-        "x-rapidapi-host": API_HOST,
-      },
-    })
+    // Datos básicos: stats, habilidades, sprites
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
       .then(res => {
-        if (!res.ok) {
-          const error = new Error("Error en la respuesta de la API");
-          error.response = res;
-          throw error;
-        }
+        if (!res.ok) throw new Error("Error en la API Pokémon");
         return res.json();
       })
-      .then(data => setHeroInfo(data))
+      .then(data => setPokemonInfo(data))
       .catch(err => handleApiError(err));
-  }, [heroId]);
+
+    // Lore / historia (flavor text)
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Error en species API");
+        return res.json();
+      })
+      .then(data => setPokemonSpecies(data))
+      .catch(err => handleApiError(err));
+  }, [pokemonId]);
 
   return (
     <div className="flex min-h-screen bg-zinc-800 text-white">
-      {/* Sidebar con lista de héroes */}
-      <SidebarHeroes setHeroId={setHeroId} />
+      <PokeSidebar setHeroId={setPokemonId} /> {/* renombrar a SidebarPokemon */}
 
-      {/* Contenido principal */}
       <main className="flex-1 p-8 space-y-10">
-        {/* Lore / Historia */}
+        {/* Historia */}
         <section>
           <h2 className="text-2xl font-bold mb-4">Historia</h2>
-          {heroInfo ? <p>{heroInfo.story}</p> : <p>Cargando historia...</p>}
+          {pokemonSpecies ? (
+            <p>{pokemonSpecies.flavor_text_entries.find(e => e.language.name === "es")?.flavor_text}</p>
+          ) : (
+            <p>Cargando historia...</p>
+          )}
         </section>
 
         {/* Habilidades */}
         <section>
           <h2 className="text-2xl font-bold mb-4">Habilidades</h2>
-          {heroInfo && heroInfo.skills ? (
-            heroInfo.skills.map(skill => (
-              <div key={skill.name} className="mb-2">
-                <h3 className="font-semibold">{skill.name}</h3>
-                <p>{skill.description}</p>
+          {pokemonInfo ? (
+            pokemonInfo.abilities.map(a => (
+              <div key={a.ability.name}>
+                <h3 className="font-semibold">{a.ability.name}</h3>
               </div>
             ))
           ) : (
@@ -59,11 +59,13 @@ function MobileLegendsData() {
         {/* Estadísticas */}
         <section>
           <h2 className="text-2xl font-bold mb-4">Estadísticas</h2>
-          {heroInfo && heroInfo.stats ? (
+          {pokemonInfo ? (
             <ul>
-              <li>Ataque: {heroInfo.stats.attack}</li>
-              <li>Defensa: {heroInfo.stats.defense}</li>
-              <li>Dificultad: {heroInfo.stats.difficulty}</li>
+              {pokemonInfo.stats.map(s => (
+                <li key={s.stat.name}>
+                  {s.stat.name}: {s.base_stat}
+                </li>
+              ))}
             </ul>
           ) : (
             <p>Cargando estadísticas...</p>
@@ -74,4 +76,4 @@ function MobileLegendsData() {
   );
 }
 
-export default MobileLegendsData;
+export default PokemonData;
