@@ -66,7 +66,7 @@ function PokeSidebar({ setPokemonId }) {
         className="w-14 h-14 rounded-full overflow-hidden border-2 border-indigo-500 mb-6 cursor-pointer"
       >
         <img
-          src="/avatar.png"
+          src="../../assets/avatar.png"
           alt="Avatar"
           className="w-full h-full object-cover"
         />
@@ -114,3 +114,4 @@ function PokeSidebar({ setPokemonId }) {
 }
 
 export default PokeSidebar;
+
