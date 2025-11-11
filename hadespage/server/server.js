@@ -8,20 +8,22 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 4000;
 const API_URL = "https://api.football-data.org/v4";
-const API_KEY = process.env.FOOTBALL_API_KEY; // guardar key en .env
+const API_KEY = process.env.FOOTBALL_API_KEY;
 
-app.use(cors());
+//  CORS: solo permite frontend en Vercel
+app.use(cors({
+  origin: "*"
+}));
 
-// Endpoint para obtener datos de un equipo
-app.get("/api/team/:id", async (req, res) => {
+// Último partido terminado
+app.get("/api/team/:id/last-match", async (req, res) => {
   const { id } = req.params;
   try {
-    const response = await fetch(`${API_URL}/teams/${id}`, {
+    const response = await fetch(`${API_URL}/teams/${id}/matches?status=FINISHED&limit=1`, {
       headers: { "X-Auth-Token": API_KEY },
     });
-    if (!response.ok) {
-      return res.status(response.status).json({ error: "Error en la API" });
-    }
+    if (!response.ok) return res.status(response.status).json({ error: "Error en la API" });
+
     const data = await response.json();
     res.json(data);
   } catch (err) {
@@ -29,20 +31,33 @@ app.get("/api/team/:id", async (req, res) => {
   }
 });
 
-// Endpoint para obtener partidos de un equipo
-app.get("/api/team/:id/matches", async (req, res) => {
+// Próximo partido
+app.get("/api/team/:id/next-match", async (req, res) => {
   const { id } = req.params;
-  const { status = "FINISHED", limit = 1 } = req.query;
   try {
-    const response = await fetch(
-      `${API_URL}/teams/${id}/matches?status=${status}&limit=${limit}`,
-      { headers: { "X-Auth-Token": API_KEY } }
-    );
-    if (!response.ok) {
-      return res.status(response.status).json({ error: "Error en la API" });
-    }
+    const response = await fetch(`${API_URL}/teams/${id}/matches?status=SCHEDULED&limit=1`, {
+      headers: { "X-Auth-Token": API_KEY },
+    });
+    if (!response.ok) return res.status(response.status).json({ error: "Error en la API" });
+
     const data = await response.json();
     res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+// Plantilla del equipo (squad)
+app.get("/api/team/:id/squad", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await fetch(`${API_URL}/teams/${id}`, {
+      headers: { "X-Auth-Token": API_KEY },
+    });
+    if (!response.ok) return res.status(response.status).json({ error: "Error en la API" });
+
+    const data = await response.json();
+    res.json(data.squad);
   } catch (err) {
     res.status(500).json({ error: "Error interno del servidor" });
   }
