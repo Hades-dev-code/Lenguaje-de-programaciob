@@ -49,7 +49,7 @@ function Sidebar() {
 
         {/* Nuevo acceso con balón animado solo en hover */}
         <Link
-          to="/football-data"
+          to="/poke-data"
           className="flex items-center gap-2 hover:text-indigo-400 transition group"
         >
           <FaFutbol className="w-6 h-6 text-red-500 group-hover:animate-spin-slow" /> 
@@ -70,3 +70,4 @@ function Sidebar() {
 }
 
 export default Sidebar;
+
