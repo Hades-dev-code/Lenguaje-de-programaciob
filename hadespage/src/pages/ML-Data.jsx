@@ -17,7 +17,11 @@ function MobileLegendsData() {
       },
     })
       .then(res => {
-        if (!res.ok) throw { response: res };
+        if (!res.ok) {
+          const error = new Error("Error en la respuesta de la API");
+          error.response = res;
+          throw error;
+        }
         return res.json();
       })
       .then(data => setHeroInfo(data))
