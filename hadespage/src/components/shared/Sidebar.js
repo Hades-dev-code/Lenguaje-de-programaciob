@@ -52,8 +52,8 @@ function Sidebar() {
           to="/poke-data"
           className="flex items-center gap-2 hover:text-indigo-400 transition group"
         >
-          <FaFutbol className="w-6 h-6 text-red-500 group-hover:animate-spin-slow" /> 
-          {isExpanded && <span>BufferBall</span>}
+          <FaFutbol className="w-6 h-6 text-red-500 group-hover:animate-spin-slow" />
+          {isExpanded && <span>PokAPI</span>}
         </Link>
       </nav>
 
@@ -70,4 +70,3 @@ function Sidebar() {
 }
 
 export default Sidebar;
-
