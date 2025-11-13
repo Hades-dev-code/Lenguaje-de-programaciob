@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Avatar } from "../../assets/profile-pic.png";
+import Avatar from "../../assets/profile-pic.png";
 
 function PokeSidebar({ setPokemonId }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -66,7 +66,7 @@ function PokeSidebar({ setPokemonId }) {
         onClick={() => navigate("/")}
         className="w-14 h-14 rounded-full overflow-hidden border-2 border-indigo-500 mb-6 cursor-pointer"
       >
-        <img src="Avatar" alt="Avatar" className="w-full h-full object-cover" />
+        <img src={Avatar} alt="Avatar" className="w-full h-full object-cover" />
       </div>
 
       {/* Zona superior para acelerar scroll hacia arriba */}
@@ -111,3 +111,4 @@ function PokeSidebar({ setPokemonId }) {
 }
 
 export default PokeSidebar;
+
