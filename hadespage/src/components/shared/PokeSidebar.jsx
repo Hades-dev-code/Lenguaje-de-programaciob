@@ -10,8 +10,8 @@ function PokeSidebar({ setPokemonId }) {
   const autoScrollInterval = useRef(null);
 
   useEffect(() => {
-    // Traer lista de Pokémon (primeros 50)
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=150")
+    // Traer lista de Pokémon (primeros 151)
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
       .then((res) => res.json())
       .then((data) => setPokemonList(data.results))
       .catch((err) => console.error("Error cargando Pokémon:", err));
@@ -37,21 +37,25 @@ function PokeSidebar({ setPokemonId }) {
   };
 
   // Scroll automático tipo marquee
-  useEffect(() => {
-    autoScrollInterval.current = setInterval(() => {
-      if (scrollRef.current) {
-        scrollRef.current.scrollTop += 1;
-        if (
-          scrollRef.current.scrollTop >=
-          scrollRef.current.scrollHeight - scrollRef.current.clientHeight
-        ) {
-          scrollRef.current.scrollTop = 0;
-        }
-      }
-    }, 150);
+useEffect(() => {
+  autoScrollInterval.current = setInterval(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop += 1;
 
-    return () => clearInterval(autoScrollInterval.current);
-  }, []);
+      const atBottom =
+        scrollRef.current.scrollTop >=
+        scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
+
+      if (atBottom) {
+        clearInterval(autoScrollInterval.current);
+        autoScrollInterval.current = null;
+      }
+    }
+  }, 151);
+
+  return () => clearInterval(autoScrollInterval.current);
+}, []);
+
 
   return (
     <aside
@@ -111,4 +115,5 @@ function PokeSidebar({ setPokemonId }) {
 }
 
 export default PokeSidebar;
+
 
