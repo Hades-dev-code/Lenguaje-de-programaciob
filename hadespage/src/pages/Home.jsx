@@ -1,7 +1,7 @@
 import React from "react";
 
 // Importamos los componentes
-import Sidebar from "../components/shared/Sidebar.js";
+import Sidebar from "../components/shared/Sidebar.jsx";
 import Hero from "../components/sections/Hero.jsx";
 import Work from "../components/shared/Work.jsx";
 import About from "../components/sections/About.jsx";
@@ -23,3 +23,4 @@ function Home() {
 }
 
 export default Home;
+
