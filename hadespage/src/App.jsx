@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Contact from "./pages/Contact.jsx";
-import MobileLegendData from "./pages/ML-Data.jsx";
+import PokeData from "./pages/PokeData.jsx";
 import useScrollProgress from "./hooks/useScrollProgress.js";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contacto" element={<Contact />} />
-          <Route path="/ml-data" element={<MobileLegendData />} /> {/* 👈 Nueva ruta */}
+          <Route path="/poke-data" element={<PokeData />} /> {/* 👈 Nueva ruta */}
         </Routes>
       </div>
     </Router>

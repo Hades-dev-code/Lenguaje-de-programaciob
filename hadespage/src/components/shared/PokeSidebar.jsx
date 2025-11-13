@@ -1,31 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import Avatar from "../../assets/profile-pic.png";
 
-function SidebarHeroes({ setHeroId }) {
+function PokeSidebar({ setPokemonId }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [heroes, setHeroes] = useState([]);
+  const [pokemonList, setPokemonList] = useState([]);
   const scrollRef = useRef(null);
   const scrollInterval = useRef(null);
   const autoScrollInterval = useRef(null);
 
-  const API_HOST = "mobile-legends-character-api.p.rapidapi.com";
-  const API_KEY = process.env.REACT_APP_RAPIDAPI_KEY;
-
   useEffect(() => {
-    fetch(`https://${API_HOST}/api/characters`, {
-      headers: {
-        "x-rapidapi-key": API_KEY,
-        "x-rapidapi-host": API_HOST,
-      },
-    })
-      .then(res => res.json())
-      .then(data => setHeroes(data))
-      .catch(err => console.error("Error cargando héroes:", err));
+    // Traer lista de Pokémon (primeros 151)
+    fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
+      .then((res) => res.json())
+      .then((data) => setPokemonList(data.results))
+      .catch((err) => console.error("Error cargando Pokémon:", err));
   }, []);
 
   const navigate = useNavigate();
 
-  // Scroll control manual (hover arriba/abajo)
+  // Scroll manual (hover arriba/abajo)
   const startScroll = (direction, speed = 2) => {
     stopScroll();
     scrollInterval.current = setInterval(() => {
@@ -43,22 +37,25 @@ function SidebarHeroes({ setHeroId }) {
   };
 
   // Scroll automático tipo marquee
-  useEffect(() => {
-    autoScrollInterval.current = setInterval(() => {
-      if (scrollRef.current) {
-        scrollRef.current.scrollTop += 1; // velocidad suave
-        // Reinicia al llegar al final
-        if (
-          scrollRef.current.scrollTop >=
-          scrollRef.current.scrollHeight - scrollRef.current.clientHeight
-        ) {
-          scrollRef.current.scrollTop = 0;
-        }
-      }
-    }, 50);
+useEffect(() => {
+  autoScrollInterval.current = setInterval(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop += 1;
 
-    return () => clearInterval(autoScrollInterval.current);
-  }, []);
+      const atBottom =
+        scrollRef.current.scrollTop >=
+        scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
+
+      if (atBottom) {
+        clearInterval(autoScrollInterval.current);
+        autoScrollInterval.current = null;
+      }
+    }
+  }, 151);
+
+  return () => clearInterval(autoScrollInterval.current);
+}, []);
+
 
   return (
     <aside
@@ -73,11 +70,7 @@ function SidebarHeroes({ setHeroId }) {
         onClick={() => navigate("/")}
         className="w-14 h-14 rounded-full overflow-hidden border-2 border-indigo-500 mb-6 cursor-pointer"
       >
-        <img
-          src="/avatar.png"
-          alt="Avatar"
-          className="w-full h-full object-cover"
-        />
+        <img src={Avatar} alt="Avatar" className="w-full h-full object-cover" />
       </div>
 
       {/* Zona superior para acelerar scroll hacia arriba */}
@@ -87,21 +80,26 @@ function SidebarHeroes({ setHeroId }) {
         onMouseLeave={stopScroll}
       />
 
-      {/* Lista de héroes con scroll automático */}
+      {/* Lista de Pokémon */}
       <nav
         ref={scrollRef}
-        className="flex flex-col gap-6 overflow-y-hidden flex-1"
+        className="flex flex-col gap-4 overflow-y-hidden flex-1"
       >
-        {heroes.map(hero => (
+        {pokemonList.map((pokemon) => (
           <button
-            key={hero.name}
-            onClick={() => setHeroId(hero.name)}
-            className="flex items-center gap-2 hover:text-indigo-400 transition"
+            key={pokemon.name}
+            onClick={() => setPokemonId(pokemon.name)}
+            className="flex items-center gap-2 hover:text-indigo-400 transition capitalize"
           >
-            {hero.icon && (
-              <img src={hero.icon} alt={hero.name} className="w-6 h-6" />
-            )}
-            {isExpanded && <span>{hero.name}</span>}
+            {/* Sprite básico desde PokéAPI */}
+            <img
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                pokemon.url.split("/")[6]
+              }.png`}
+              alt={pokemon.name}
+              className="w-6 h-6"
+            />
+            {isExpanded && <span>{pokemon.name}</span>}
           </button>
         ))}
       </nav>
@@ -116,4 +114,6 @@ function SidebarHeroes({ setHeroId }) {
   );
 }
 
-export default SidebarHeroes;
+export default PokeSidebar;
+
+

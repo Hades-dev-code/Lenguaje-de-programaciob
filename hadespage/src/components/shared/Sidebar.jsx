@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaFutbol } from "react-icons/fa"; // 👈 balón de fútbol
+import PokeIcon from "../../assets/poke-icon.png"; 
 import GithubIcon from "../../assets/github-icon.png";
 import CompanyIcon from "../../assets/company-icon.png";
 import ProfilePic from "../../assets/profile-pic.png";
@@ -47,13 +47,13 @@ function Sidebar() {
           {isExpanded && <span>Buffer Ring</span>}
         </a>
 
-        {/* Nuevo acceso con balón animado solo en hover */}
+        {/* Nuevo acceso Pika! */}
         <Link
-          to="/football-data"
+          to="/poke-data"
           className="flex items-center gap-2 hover:text-indigo-400 transition group"
         >
-          <FaFutbol className="w-6 h-6 text-red-500 group-hover:animate-spin-slow" /> 
-          {isExpanded && <span>BufferBall</span>}
+          <img src={PokeIcon} alt="Pokémon Icon" className="w-full h-full object-cover" />
+          {isExpanded && <span>PokAPI</span>}
         </Link>
       </nav>
 
@@ -70,3 +70,4 @@ function Sidebar() {
 }
 
 export default Sidebar;
+
