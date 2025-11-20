@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import Avatar from "../../assets/profile-pic.png";
 
 function PokeSidebar({ setPokemonId }) {
@@ -37,25 +39,30 @@ function PokeSidebar({ setPokemonId }) {
   };
 
   // Scroll automático tipo marquee
-useEffect(() => {
-  autoScrollInterval.current = setInterval(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop += 1;
+  useEffect(() => {
+    autoScrollInterval.current = setInterval(() => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop += 1;
 
-      const atBottom =
-        scrollRef.current.scrollTop >=
-        scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
+        const atBottom =
+          scrollRef.current.scrollTop >=
+          scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
 
-      if (atBottom) {
-        clearInterval(autoScrollInterval.current);
-        autoScrollInterval.current = null;
+        if (atBottom) {
+          clearInterval(autoScrollInterval.current);
+          autoScrollInterval.current = null;
+        }
       }
-    }
-  }, 151);
+    }, 151);
 
-  return () => clearInterval(autoScrollInterval.current);
-}, []);
+    return () => clearInterval(autoScrollInterval.current);
+  }, []);
 
+  // 👉 Capturar navegación y refrescar AOS
+  const handleNavigateHome = () => {
+    navigate("/");
+    AOS.refresh(); // fuerza recalculado de animaciones
+  };
 
   return (
     <aside
@@ -67,7 +74,7 @@ useEffect(() => {
     >
       {/* Avatar → volver al portafolio */}
       <div
-        onClick={() => navigate("/")}
+        onClick={handleNavigateHome}
         className="w-14 h-14 rounded-full overflow-hidden border-2 border-indigo-500 mb-6 cursor-pointer"
       >
         <img src={Avatar} alt="Avatar" className="w-full h-full object-cover" />
@@ -91,7 +98,6 @@ useEffect(() => {
             onClick={() => setPokemonId(pokemon.name)}
             className="flex items-center gap-2 hover:text-indigo-400 transition capitalize"
           >
-            {/* Sprite básico desde PokéAPI */}
             <img
               src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
                 pokemon.url.split("/")[6]
@@ -115,5 +121,3 @@ useEffect(() => {
 }
 
 export default PokeSidebar;
-
-
