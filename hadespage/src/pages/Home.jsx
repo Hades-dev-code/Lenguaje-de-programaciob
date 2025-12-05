@@ -13,7 +13,7 @@ function Home() {
       <Sidebar />
 
       {/* Contenido principal */}
-      <main className="ml-20 p-8 w-full bg-zinc-700">
+      <main className="ml-20 p-8 w-full transition-colors duration-300">
         <Hero />
         <Work />
         <About />
@@ -23,4 +23,3 @@ function Home() {
 }
 
 export default Home;
-
