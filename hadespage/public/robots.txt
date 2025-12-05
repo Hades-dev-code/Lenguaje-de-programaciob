@@ -1,3 +1,18 @@
-# https://www.robotstxt.org/robotstxt.html
+# HadesPage robots.txt
+# Más info: https://www.robotstxt.org/
+
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /config/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /webpack.config.js
+Disallow: /tailwind.config.js
+
+# Permitir todo lo demás
+Allow: /
+
+# Sitemap para mejorar indexación
+Sitemap: https://tusitio.com/sitemap.xml
