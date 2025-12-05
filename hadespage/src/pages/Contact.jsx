@@ -13,36 +13,24 @@ function Contact() {
   });
 
   // Validaciones
-  const validateName = (name) => {
-    const regex = /^([A-ZÁÉÍÓÚÑ]?[a-záéíóúñ]+)(\s[A-ZÁÉÍÓÚÑ]?[a-záéíóúñ]+)*$/;
-    return regex.test(name.trim());
+  const validators = {
+    name: (value) =>
+      /^([A-ZÁÉÍÓÚÑ]?[a-záéíóúñ]+)(\s[A-ZÁÉÍÓÚÑ]?[a-záéíóúñ]+)*$/.test(value.trim()),
+    email: (value) =>
+      /^[a-zA-Z0-9._%+-]+@(gmail|hotmail|outlook|yahoo)\.com$/.test(value.trim()),
+    message: (value) => value.trim().length > 0,
   };
 
-  const validateEmail = (email) => {
-    const regex = /^[a-zA-Z0-9._%+-]+@(gmail|hotmail|outlook|yahoo)\.com$/;
-    return regex.test(email.trim());
+  const errorMessages = {
+    name: "El nombre solo puede contener letras y espacios. Ej: Carlos Pérez",
+    email:
+      "El correo debe ser válido y terminar en @gmail.com, @hotmail.com, @outlook.com o @yahoo.com",
+    message: "El mensaje no puede estar vacío",
   };
 
-  const validateMessage = (msg) => msg.trim().length > 0;
-
-  // Manejo de blur (cuando el usuario sale del campo)
   const handleBlur = (field) => {
-    if (field === "name" && !validateName(formData.name)) {
-      toast.error("El nombre solo puede contener letras y espacios. Ej: Carlos Pérez", {
-        position: "bottom-right",
-        transition: Slide,
-        className: "scale-up",
-      });
-    }
-    if (field === "email" && !validateEmail(formData.email)) {
-      toast.error("El correo debe ser válido y terminar en @gmail.com, @hotmail.com, @outlook.com o @yahoo.com", {
-        position: "bottom-right",
-        transition: Slide,
-        className: "scale-up",
-      });
-    }
-    if (field === "message" && !validateMessage(formData.message)) {
-      toast.error("El mensaje no puede estar vacío", {
+    if (!validators[field](formData[field])) {
+      toast.error(errorMessages[field], {
         position: "bottom-right",
         transition: Slide,
         className: "scale-up",
@@ -50,20 +38,19 @@ function Contact() {
     }
   };
 
-  // Manejo de cambios en inputs
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-700 p-8">
+    <div className="min-h-screen flex items-center justify-center p-8 transition-colors duration-300">
       <div className="bg-zinc-200 p-8 rounded-xl shadow-lg w-full max-w-lg border-4 border-zinc-500">
         <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b pb-2">
           Contáctame 📩
         </h2>
 
         <form
-          action="https://formsubmit.co/TU_CORREO_AQUI"
+          action="https://formsubmit.co/hadesdev004@gmail.com"
           method="POST"
           className="space-y-4"
         >
@@ -113,7 +100,6 @@ function Contact() {
         </button>
       </div>
 
-      {/* Contenedor de notificaciones */}
       <ToastContainer
         autoClose={3000}
         hideProgressBar
