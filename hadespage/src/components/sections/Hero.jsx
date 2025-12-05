@@ -5,10 +5,9 @@ function Hero() {
   return (
     <section
       id="presentacion"
-      className="p-10 bg-zinc-200 rounded-xl shadow-lg mb-12 border-4 border-zinc-500"
+      className="p-10 rounded-xl shadow-lg mb-12 border-4 border-zinc-500 transition-colors duration-300"
     >
       <div className="flex flex-col md:flex-row items-center mx-auto max-w-4xl">
-        
         {/* Avatar */}
         <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-indigo-500 flex-shrink-0 mb-6 md:mb-0 md:mr-10">
           <img
