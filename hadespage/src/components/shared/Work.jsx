@@ -1,5 +1,5 @@
 import React from "react";
-import WorkItem from "../shared/WorkItem";
+import WorkItem from "./WorkItem";
 
 import DriveAnalyzer from "../../assets/driveanalizer.jpg";
 import Simulator from "../../assets/simulator.jpg";
@@ -54,3 +54,4 @@ function Work() {
 }
 
 export default Work;
+
