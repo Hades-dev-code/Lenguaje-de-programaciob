@@ -3,7 +3,7 @@ import React from "react";
 // Importamos los componentes
 import Sidebar from "../components/shared/Sidebar.jsx";
 import Hero from "../components/sections/Hero.jsx";
-import Work from "../components/shared/Work.jsx";
+import Work from "../components/sections/Work.jsx";
 import About from "../components/sections/About.jsx";
 
 function Home() {
@@ -13,7 +13,7 @@ function Home() {
       <Sidebar />
 
       {/* Contenido principal */}
-      <main className="ml-20 p-8 w-full bg-zinc-700">
+      <main className="ml-20 p-8 w-full transition-colors duration-300">
         <Hero />
         <Work />
         <About />

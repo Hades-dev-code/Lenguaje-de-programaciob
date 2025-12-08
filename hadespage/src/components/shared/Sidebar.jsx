@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import AOS from "aos";
-import "aos/dist/aos.css";
-
-import PokeIcon from "../../assets/poke-icon.png"; 
+import PokeIcon from "../../assets/poke-icon.png";
 import GithubIcon from "../../assets/github-icon.png";
 import CompanyIcon from "../../assets/company-icon.png";
 import ProfilePic from "../../assets/profile-pic.png";
@@ -11,17 +8,11 @@ import ProfilePic from "../../assets/profile-pic.png";
 function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Función para refrescar AOS al hacer click en un Link
-  const handleNavClick = () => {
-    // Forzar recalculado de animaciones
-    AOS.refresh();
-  };
-
   return (
     <aside
       className={`fixed top-0 left-0 h-full bg-zinc-900 text-white 
                   flex flex-col items-center py-6 transition-all duration-300 
-                  ${isExpanded ? "w-48" : "w-20"} z-50`}
+                  ${isExpanded ? "w-48" : "w-20"} z-50 transition-colors`}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
@@ -34,7 +25,7 @@ function Sidebar() {
         />
       </div>
 
-      {/* Íconos arriba */}
+      {/* Enlaces */}
       <nav className="flex flex-col gap-6 mb-8">
         <a
           href="https://github.com/Hades-dev-code"
@@ -56,10 +47,8 @@ function Sidebar() {
           {isExpanded && <span>Buffer Ring</span>}
         </a>
 
-        {/* Nuevo acceso Pika! */}
         <Link
           to="/poke-data"
-          onClick={handleNavClick}
           className="flex items-center gap-2 hover:text-indigo-400 transition group"
         >
           <img src={PokeIcon} alt="Pokémon Icon" className="w-6 h-6" />
@@ -67,10 +56,8 @@ function Sidebar() {
         </Link>
       </nav>
 
-      {/* Botón de contacto */}
       <Link
         to="/contacto"
-        onClick={handleNavClick}
         className="mt-4 w-full text-center bg-indigo-600 hover:bg-indigo-700 
                    py-2 px-3 rounded-lg text-sm transition"
       >

@@ -1,13 +1,11 @@
 import React from "react";
 import WorkItem from "../shared/WorkItem";
 
-// Importa tus imágenes desde assets
 import DriveAnalyzer from "../../assets/driveanalizer.jpg";
 import Simulator from "../../assets/simulator.jpg";
 import Peak from "../../assets/peak.jpg";
 import CarFix from "../../assets/Carfix.jpg";
 
-// Array de proyectos destacados
 const workItems = [
   {
     title: "Analizador de archivos",
@@ -35,13 +33,12 @@ function Work() {
   return (
     <section
       id="trabajos"
-      className="border-4 border-zinc-500 p-8 bg-zinc-200 rounded-xl shadow-lg mt-12"
+      className="border-4 border-zinc-500 p-8 rounded-xl shadow-lg mt-12 transition-colors duration-300"
     >
       <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b pb-2">
         Trabajos Destacados 🚀
       </h2>
 
-      {/* Grid de proyectos */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {workItems.map((item, index) => (
           <WorkItem
@@ -57,3 +54,5 @@ function Work() {
 }
 
 export default Work;
+
+

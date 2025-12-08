@@ -5,16 +5,14 @@ function About() {
   return (
     <section
       id="sobre-mi"
-      className="p-8 bg-zinc-200 rounded-xl shadow-lg mt-12 border-4 border-zinc-500"
+      className="p-8 rounded-xl shadow-lg mt-12 border-4 border-zinc-500 transition-colors duration-300"
     >
       <h2 className="text-3xl font-bold text-gray-900 mb-6 border-b border-gray-600 pb-2">
         Sobre Mí 👤
       </h2>
 
-      {/* Estructura de dos columnas: Texto + Imagen */}
       <div className="flex flex-col md:flex-row gap-8 items-center">
-        
-        {/* Texto (ocupa 2/3 en desktop) */}
+        {/* Texto */}
         <div className="md:w-2/3 text-lg text-gray-700 space-y-4">
           <p>
             Soy estudiante de ingeniería de sistemas de la UNEFA núcleo Apure. 
@@ -30,7 +28,7 @@ function About() {
           </p>
         </div>
 
-        {/* Imagen (ocupa 1/3 en desktop) */}
+        {/* Imagen */}
         <div className="md:w-1/3 w-full flex justify-center p-4">
           <img
             src={AboutMeImage}
